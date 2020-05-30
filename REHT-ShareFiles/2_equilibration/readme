@@ -1,0 +1,2 @@
+1.Edit the position restraint file obtained from step 1_system_setup to include different force constants to be applied in each equilibration step.
+2. run through the steps in equil.sh

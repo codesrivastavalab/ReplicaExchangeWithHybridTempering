@@ -1,0 +1,9 @@
+#1. prepare multiple mdp files by running temp.sh
+
+#2. scaling topologies:
+#first produce the processed.top file using 'grompp -pp' to contain all the parameters. The processed.top file should not have any "#include" statement.
+# choose the "hot" atoms
+vi processed.top # specify the hot atoms by appending "_" to each atom type under [ atoms ] section of protein molecule in the topology file
+# generate the actual topology using plumed partial_tempering. This can be done through the scale_topol.sh.
+# In case if you use charmm36 forcefield, remember to scale the cmap term. This can be done through lines 30-43 in scale_topol.sh 
+

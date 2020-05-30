@@ -1,0 +1,10 @@
+# run the first 1ns of production simulation without any exchange to equilibrate the replicas to corresponding replica temperature. 
+
+mpirun gmx_mpi mdrun -v -multi 20 -s 1md -deffnm 1md  -replex 500001 -hrex -plumed plumed.dat
+
+#From next step allow the exchange to be attempted every specified steps.
+
+gmx_mpi convert-tpr -s 1md$i.tpr -o 2md$i.tpr -f 1md$i.cpt  -extend 100000
+mpirun gmx_mpi mdrun -v -multi 20 -cpi 2md.cpt -s 2md -deffnm 2md  -replex 500 -hrex -plumed plumed.dat -noappend -ntomp 1
+
+#Option -hrex requires also option -plumed. If you do not care about plumed, just provide an empty plumed.dat file.
